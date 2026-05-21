@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Pinjaman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigasi dengan Logo Huruf -->
+    <nav>
+        <div class="nav-brand">
+            <div class="logo">K</div>
+            <h1 style="margin-left: 20px;">Kalkulator Pinjaman</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main id="home" class="container">
+        
+        <!-- Section 1: Form Input Data -->
+        <section id="form-section" class="card">
+            <h2>Data Pengajuan</h2>
+            <form id="loan-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="plafond">Plafond (Rp)</label>
+                        <input type="number" id="plafond" name="plafond" placeholder="Masukkan nominal plafond" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bunga">Bunga per Bulan (%)</label>
+                        <input type="number" id="bunga" name="bunga" placeholder="Masukkan persentase bunga" step="0.01" value="1.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="notaris">Biaya Notaris (Rp)</label>
+                        <input type="number" id="notaris" name="notaris" placeholder="Masukkan biaya notaris" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="materai">Biaya Materai (Rp)</label>
+                        <input type="number" id="materai" name="materai" placeholder="Masukkan biaya materai" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="administrasi">Biaya Administrasi (%)</label>
+                        <input type="number" id="administrasi" name="administrasi" placeholder="Masukkan biaya administrasi" step="0.01" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="angsuran">Angsuran Berjalan (Rp)</label>
+                        <input type="number" id="angsuran" name="angsuran" placeholder="Opsional" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="pelunasan">Pelunasan / Biaya Lain (Rp)</label>
+                        <input type="number" id="pelunasan" name="pelunasan" placeholder="Sisa pinjaman sebelumnya (opsional)" value="0">
+                    </div>
+                </div>
+                <button type="submit" id="btn-hitung" class="btn-primary">Hitung</button>
+                <button type="reset" class="btn-secondary">Reset</button>
+            </form>
+        </section>
+
+        <!-- Section 2: Hasil Angsuran -->
+        <section id="angsuran-section" class="card">
+            <h2>Pinjaman PA</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tenor (Bulan)</th>
+                            <th>Nominal Angsuran (Rp)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>6</td><td id="hasil-6">-</td></tr>
+                        <tr><td>12</td><td id="hasil-12">-</td></tr>
+                        <tr><td>18</td><td id="hasil-18">-</td></tr>
+                        <tr><td>24</td><td id="hasil-24">-</td></tr>
+                        <tr><td>36</td><td id="hasil-36">-</td></tr>
+                        <tr><td>42</td><td id="hasil-42">-</td></tr>
+                        <tr><td>48</td><td id="hasil-48">-</td></tr>
+                        <tr><td>54</td><td id="hasil-54">-</td></tr>
+                        <tr><td>60</td><td id="hasil-60">-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Pinjaman PT</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tenor</th>
+                            <th>Bunga per Bulan (Rp)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Bunga/Bln</td><td id="pt">-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 3: Informasi Potongan -->
+        <section id="informasi-section" class="card">
+            <h2>Rincian Potongan & Pencairan</h2>
+            <div class="info-details">
+                <div class="info-row">
+                    <span>Plafond Disetujui:</span>
+                    <span id="info-plafond" class="text-bold">Rp 0</span>
+                </div>
+                <hr>
+                <div class="info-row">
+                    <span>Biaya Notaris:</span>
+                    <span id="info-notaris">Rp 0</span>
+                </div>
+                <div class="info-row">
+                    <span>Biaya Administrasi:</span>
+                    <span id="info-administrasi">Rp 0</span>
+                </div>
+                <div class="info-row">
+                    <span>Biaya Materai:</span>
+                    <span id="info-materai">Rp 0</span>
+                </div>
+                <div class="info-row">
+                    <span>Potongan Angsuran Ke-1:</span>
+                    <span id="info-angsuran">Rp 0</span>
+                </div>
+                <div class="info-row">
+                    <span>Biaya lainnya / Pelunasan :</span>
+                    <span id="info-pelunasan">Rp 0</span>
+                </div>
+                <hr>
+                <div class="info-row highlight">
+                    <span>Total Terima Bersih:</span>
+                    <span id="info-terima-bersih">Rp 0</span>
+                </div>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Section: About -->
+    <section id="about" class="page-section card">
+        <h2>About</h2>
+        <p>Aplikasi Kalkulator Pinjaman ini dibuat untuk membantu Anda mensimulasikan perhitungan angsuran pinjaman dengan mudah dan cepat. Masukkan data plafond, bunga, dan biaya lainnya untuk mendapatkan estimasi angsuran dan total pencairan bersih.</p>
+    </section>
+
+    <!-- Section: Contact -->
+    <section id="contact" class="page-section card">
+        <h2>Contact</h2>
+        <p>Jika Anda memiliki pertanyaan atau masukan, silakan hubungi kami:</p>
+        <p>Email: contact@simulasikredit.com</p>
+        <p>Telepon: +62 812 3456 7890</p>
+    </section>
+    <footer>
+        <p>&copy; 2026 Simulasi Kredit. All rights reserved. || Vicky Yogi Pratama</p>
+    </footer>
+<script src="app.js"></script>
+</body>
+</html>

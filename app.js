@@ -26,6 +26,7 @@ loadForm.addEventListener("submit", function (e) {
 
     const pt = Math.ceil((p * b)/500) * 500;
     const hasil6 = Math.ceil(((((p * b) * 6) + p) / 6) / 500) * 500;
+    const hasil10 = Math.ceil(((((p * b) * 10) + p) / 10) / 500) * 500
     const hasil12 = Math.ceil(((((p * b) * 12) + p) / 12) / 500) * 500;
     const hasil18 = Math.ceil(((((p * b) * 18) + p) / 18) / 500) * 500;
     const hasil24 = Math.ceil(((((p * b) * 24) + p) / 24) / 500) * 500;
@@ -36,6 +37,7 @@ loadForm.addEventListener("submit", function (e) {
     const hasil60 = Math.ceil(((((p * b) * 60) + p) / 60) / 500) * 500;
 
     document.getElementById("hasil-6").textContent = formatRupiah(hasil6);
+    document.getElementById("hasil-10").textContent = formatRupiah(hasil10);
     document.getElementById("hasil-12").textContent = formatRupiah(hasil12);
     document.getElementById("hasil-18").textContent = formatRupiah(hasil18);
     document.getElementById("hasil-24").textContent = formatRupiah(hasil24);

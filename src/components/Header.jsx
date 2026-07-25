@@ -1,5 +1,6 @@
 import './style.comp.css'
 import LogoArc from '../assets/logo-arc.png'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -10,6 +11,13 @@ function Header() {
             <img src={LogoArc} className='h-8 w-auto'/>
             <h2 className='text-blue-950 font-bold tracking-tight'>BPR Adiartha Reksacitra Grup</h2>
         </div>
+
+        {/* Navigation Links */}
+        <nav className='flex items-center space-x-4'>
+          <Link to="/" className='text-gray-700 hover:text-blue-600 transition-colors'>Simulasi Kredit</Link>
+          <Link to="/deposito" className='text-gray-700 hover:text-blue-600 transition-colors'>Simulasi Deposito</Link>
+        </nav>
+        
         {/* Social Media Links */}
         <div className="flex items-center space-x-4 text-gray-500">
             <a href="#" className="hover:text-blue-600 transition-colors">

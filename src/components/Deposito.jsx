@@ -44,13 +44,13 @@ function Deposito(){
                         <label htmlFor="interestRate" className="block text-sm font-medium ">Suku Bunga (%)</label>
                         <input type="number" id="interestRate" name="interestRate" step="0.01" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-3 pl-2" onChange={(e) => setFormData({...formData, interestRate: e.target.value})} value={setFormData.interestRate} placeholder="5"/>
                     </div>
-                    <button type="submit" className="w-full bg-white text-indigo-950 py-2 px-4 rounded-md hover:bg-emerald-600 hover:text-white transition-colors" onClick={bungaDeposito}>Hitung</button>
+                    <button type="submit" className="w-full bg-white text-indigo-950 py-2 px-4 rounded-md hover:bg-indigo-600 hover:text-white transition-colors cursor-pointer" onClick={bungaDeposito}>Hitung</button>
                 </form>
             </div>
-            <div className="bg-gradient-to-br bg-indigo-900/90 to-slate-900/50 p-4 rounded-lg shadow-md text-center border border-gray-200 text-white">
+            <div className="bg-gradient-to-br bg-indigo-900/90 to-slate-900/50 p-4 rounded-lg shadow-md text-center border border-slate-700/50 text-white">
                 <h2 className="text-lg font-semibold mb-2">Hasil Bunga per Bulan</h2>
-                <span className="text-4xl font-extrabold">RP. {result ? converToRupiah(result.hasilDeposito) : 0} </span>
-                <p className=" mt-5">Total Akhir (6 bulan):</p> <span className="font-medium">Rp {result ? converToRupiah(result.deposite + (result.hasilDeposito * 6)): 0}</span>
+                <span className="text-4xl font-extrabold">{result ? converToRupiah(result.hasilDeposito) : 0} </span>
+                <p className=" mt-5">Total Akhir (6 bulan):</p> <span className="font-medium">{result ? converToRupiah(result.deposite + (result.hasilDeposito * 6)): 0}</span>
                 <p className="mt-5 font-small">* NB : Hasil diatas merupakan hitungan kasar berdasarkan bunga deposito saat ini</p>
             </div>
         </div>

@@ -2,12 +2,14 @@ import './style.comp.css'
 import LogoArc from '../assets/logo-arc.png'
 import { BrowserRouter, Router, Routes, Route, Link } from 'react-router-dom';
 import {useState} from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className='bg-white shadow-md fixed w-full top-0 left-0 z-50'>
+    <header className='bg-white shadow-md '>
       <div className='flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16'>
         {/* Logo Desktop*/}
         <div className='p-4 shrink-0 flex items-center gap-3'>
@@ -24,13 +26,13 @@ function Header() {
         {/* Social Media Links Desktop */}
         <div className="flex items-center space-x-4 text-gray-500">
             <a href="#" className="hover:text-blue-600 transition-colors">
-              
+              <FontAwesomeIcon icon={faFacebook} size="lg" />
             </a>
             <a href="#" className="hover:text-pink-600 transition-colors">
-              
+              <FontAwesomeIcon icon={faInstagram} size="lg" />
             </a>
             <a href="#" className="hover:text-black transition-colors">
-              
+              <FontAwesomeIcon icon={faTwitter} size="lg" />
             </a>
         </div>
 

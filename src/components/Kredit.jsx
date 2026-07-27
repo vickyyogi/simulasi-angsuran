@@ -13,7 +13,7 @@ function Kredit(){
         pajakStnkFee:'0'
     });
     return (
-        <div className="grid md:grid-cols-4 gap-4 p-4 mt-16">
+        <div className="grid md:grid-cols-4 gap-4 p-4 max-w-7xl mx-auto">
             <div className=" bg-gradient-to-br bg-indigo-900/90 to-slate-900/50 border border-slate-700/50 p-4 rounded-lg shadow-md space-y-6">
                 <h2 className="text-2xl font-semibold mb-2 text-blue-50">Simulasi Kredit</h2>
                 <form className="space-y-4 text-white text-sm">

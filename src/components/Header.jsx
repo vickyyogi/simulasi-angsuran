@@ -3,7 +3,7 @@ import LogoArc from '../assets/logo-arc.png'
 import { BrowserRouter, Router, Routes, Route, Link } from 'react-router-dom';
 import {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faInstagram ,faTiktok} from '@fortawesome/free-brands-svg-icons'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,12 +19,12 @@ function Header() {
 
         {/* Navigation Links Desktop */}
         <nav className='hidden md:flex items-center space-x-4'>
-          <Link to="/" className='text-gray-700 hover:text-blue-600 transition-colors'>Simulasi Kredit</Link>
-          <Link to="/deposito" className='text-gray-700 hover:text-blue-600 transition-colors'>Simulasi Deposito</Link>
+          <Link to="/" className='text-blue-950 hover:text-blue-600 transition-colors'>Simulasi Kredit</Link>
+          <Link to="/deposito" className='text-blue-950 hover:text-blue-600 transition-colors'>Simulasi Deposito</Link>
         </nav>
         
         {/* Social Media Links Desktop */}
-        <div className="flex items-center space-x-4 text-gray-500">
+        <div className="hidden md:flex items-center space-x-4 text-gray-500">
             <a href="#" className="hover:text-blue-600 transition-colors">
               <FontAwesomeIcon icon={faFacebook} size="lg" />
             </a>
@@ -32,7 +32,7 @@ function Header() {
               <FontAwesomeIcon icon={faInstagram} size="lg" />
             </a>
             <a href="#" className="hover:text-black transition-colors">
-              <FontAwesomeIcon icon={faTwitter} size="lg" />
+              <FontAwesomeIcon icon={faTiktok} size="lg" />
             </a>
         </div>
 
@@ -52,8 +52,8 @@ function Header() {
       {/* menu mobile dropdown */}
             <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden bg-gray-50 border-t border-gray-200 shadow-inner`}>
                 <div className='px-2 pt-2 pb-3 space-y-1 sm:px-2'>
-                  <Link to="/" className='block px-3 y-2 text-gray-700 hover:text-blue-600 transition-colors'>Simulasi Kredit</Link>
-                  <Link to="/deposito" className='block px-3 y-2 text-gray-700 hover:text-blue-600 transition-colors'>Simulasi Deposito</Link>
+                  <Link to="/" className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600'>Simulasi Kredit</Link>
+                  <Link to="/deposito" className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600'>Simulasi Deposito</Link>
                   <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Facebook</a>
                   <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Instagram</a>
                   <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Twitter</a>

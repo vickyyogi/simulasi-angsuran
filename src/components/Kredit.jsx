@@ -1,8 +1,12 @@
 import Header from "./Header"
 import './style.comp.css'
 import {useState} from 'react'
+import { converToRupiah } from "./convertRupiah"
 
 function Kredit(){
+
+    const [result, setResult] = useState(null)
+
     const [formData, setFormData] = useState({
         loanAmount:'0',
         interestRate:'1.5',
@@ -12,11 +16,32 @@ function Kredit(){
         lainnyaFee:'0',
         pajakStnkFee:'0'
     });
+
+    const jw = [6,10,12,18,24,30,36,42,48,54,60];
+
+    const countCredit = (e) => {
+        e.preventDefault();
+
+        const plafond = parseInt(formData.loanAmount) || 0;
+        const bunga = parseFloat(formData.interestRate) || 0;
+
+        const creditFlat = {};
+
+        jw.forEach((tenor) => {
+            creditFlat[tenor] = Math.ceil(((((plafond * (bunga/100)) * tenor) + plafond)/ tenor)/ 500 ) * 500;
+        })
+
+        setResult({
+            jw,
+            creditFlat
+        })
+    }
+
     return (
-        <div className="grid md:grid-cols-4 gap-4 p-4 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-4 p-4 max-w-7xl mx-auto">
             <div className=" bg-gradient-to-br bg-indigo-900/90 to-slate-900/50 border border-slate-700/50 p-4 rounded-lg shadow-md space-y-6">
                 <h2 className="text-2xl font-semibold mb-2 text-blue-50">Simulasi Kredit</h2>
-                <form className="space-y-4 text-white text-sm">
+                <form className="space-y-4 text-white text-sm" onSubmit={countCredit}>
                     
                         <label htmlFor="loanAmount" className="block text-sm font-medium ">Jumlah Kredit (Rp)</label>
                         <input type="number" name="loanAmount" value={formData.loanAmount} onChange={(e) => setFormData({...formData, loanAmount: e.target.value})} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-2 pl-2" />
@@ -28,16 +53,38 @@ function Kredit(){
                         <input type="number" name="notarisFee" value={formData.notarisFee} onChange={(e) => setFormData({...formData, notarisFee: e.target.value})} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-2 pl-2" />
                         <label htmlFor="loanAmount" className="block text-sm font-medium ">Biaya Materai (Rp)</label>
                         <input type="number" name="materaiFee" value={formData.materaiFee} onChange={(e) => setFormData({...formData, materaiFee: e.target.value})} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-2 pl-2" />
-                        <label htmlFor="loanAmount" className="block text-sm font-medium ">Biaya Lainnya (Rp)</label>
-                        <input type="number" name="lainnyaFee" value={formData.lainnyaFee} onChange={(e) => setFormData({...formData, lainnyaFee: e.target.value})} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-2 pl-2" />
                         <label htmlFor="loanAmount" className="block text-sm font-medium ">Biaya Pajak/STNK (Rp)</label>
                         <input type="number" name="pajakStnkFee" value={formData.pajakStnkFee} onChange={(e) => setFormData({...formData, pajakStnkFee: e.target.value})} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-2 pl-2" />
+                        <label htmlFor="loanAmount" className="block text-sm font-medium ">Biaya Lainnya (Rp)</label>
+                        <input type="number" name="lainnyaFee" value={formData.lainnyaFee} onChange={(e) => setFormData({...formData, lainnyaFee: e.target.value})} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-2 pl-2" />
                     
                     <button type="submit" className="w-full bg-white text-indigo-950 py-2 px-4 rounded-md hover:bg-indigo-600 hover:text-white transition-colors cursor-pointer" >Hitung</button>
                 </form>
             </div>
             <div className="bg-gradient-to-br bg-indigo-900/90 to-slate-900/50 border border-slate-700/50 p-4 rounded-lg shadow-md space-y-6 text-white">
                 <h2 className="text-2xl font-semibold mb-2">Hasil PA</h2>
+                <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-left text-white">
+                    <thead className="text-xs text-white uppercase bg-indigo-950/50 border-b border-slate-700/50">
+                        <tr>
+                            <td className="px-6 py-3">Jangka Waktu</td>
+                            <td className="px-6 py-3">Angsuran (Rp.)</td>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-indigo-950/50 divide-amber-50/50 divide-y">
+                        {
+                            jw.map((t)=>{
+                                return (
+                                    <tr key={t} className="border-b border-slate-700/50">
+                                        <td className="px-6 py-3 text-center">{t}</td>
+                                        <td className="px-6 py-3">{result ? converToRupiah(result.creditFlat[t]) : 0}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+                </div>
             </div>
         </div>
     );

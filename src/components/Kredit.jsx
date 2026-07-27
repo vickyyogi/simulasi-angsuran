@@ -24,6 +24,11 @@ function Kredit(){
 
         const plafond = parseInt(formData.loanAmount) || 0;
         const bunga = parseFloat(formData.interestRate) || 0;
+        const adm = parseFloat(formData.admFee) || 0;
+        const notaris = parseFloat(formData.notarisFee) || 0;
+        const materai = parseFloat(formData.materaiFee) || 0;
+        const lain = parseFloat(formData.lainnyaFee) || 0;
+        const pajak = parseFloat(formData.pajakStnkFee) || 0;
 
         const creditFlat = {};
 
@@ -31,15 +36,21 @@ function Kredit(){
             creditFlat[tenor] = Math.ceil(((((plafond * (bunga/100)) * tenor) + plafond)/ tenor)/ 500 ) * 500;
         })
 
+        const nettLoan = plafond - ((adm/100 * plafond) + notaris + materai + lain + pajak);
+
         setResult({
             jw,
-            creditFlat
+            creditFlat,
+            nettLoan
         })
     }
 
     return (
+        
+        <>
         <div className="grid md:grid-cols-2 gap-4 p-4 max-w-7xl mx-auto">
-            <div className=" bg-gradient-to-br bg-indigo-900/90 to-slate-900/50 border border-slate-700/50 p-4 rounded-lg shadow-md space-y-6">
+            {/** untuk form section */}
+            <div className=" bg-linear-to-br bg-indigo-900/90 to-slate-900/50 border border-slate-700/50 p-4 rounded-lg shadow-md space-y-6">
                 <h2 className="text-2xl font-semibold mb-2 text-blue-50">Simulasi Kredit</h2>
                 <form className="space-y-4 text-white text-sm" onSubmit={countCredit}>
                     
@@ -61,21 +72,24 @@ function Kredit(){
                     <button type="submit" className="w-full bg-white text-indigo-950 py-2 px-4 rounded-md hover:bg-indigo-600 hover:text-white transition-colors cursor-pointer" >Hitung</button>
                 </form>
             </div>
-            <div className="bg-gradient-to-br bg-indigo-900/90 to-slate-900/50 border border-slate-700/50 p-4 rounded-lg shadow-md space-y-6 text-white">
-                <h2 className="text-2xl font-semibold mb-2">Hasil PA</h2>
+
+            {/* Untuk Daftar Angsuran */}
+            <div className="bg-linear-to-br bg-indigo-900/90 to-slate-900/50 border border-slate-700/50 p-4 rounded-lg shadow-md space-y-6 text-white">
+                <h2 className="text-2xl font-semibold mb-2">Daftar Angsuran</h2>
+                <p>Untuk Pinjaman Flat</p>
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm text-left text-white">
-                    <thead className="text-xs text-white uppercase bg-indigo-950/50 border-b border-slate-700/50">
+                    <thead className="text-center text-xs text-white uppercase bg-slate-950/50 border-b border-slate-700/50">
                         <tr>
-                            <td className="px-6 py-3">Jangka Waktu</td>
-                            <td className="px-6 py-3">Angsuran (Rp.)</td>
+                            <td className="px-6 py-3 font-semibold">Jangka Waktu</td>
+                            <td className="px-6 py-3 font-semibold">Angsuran (Rp.)</td>
                         </tr>
                     </thead>
                     <tbody className="bg-indigo-950/50 divide-amber-50/50 divide-y">
                         {
                             jw.map((t)=>{
                                 return (
-                                    <tr key={t} className="border-b border-slate-700/50">
+                                    <tr key={t} className="text-center border-b border-slate-700/50">
                                         <td className="px-6 py-3 text-center">{t}</td>
                                         <td className="px-6 py-3">{result ? converToRupiah(result.creditFlat[t]) : 0}</td>
                                     </tr>
@@ -84,9 +98,20 @@ function Kredit(){
                         }
                     </tbody>
                 </table>
+                <span className="font-light text-sm">*NB : Tabel diatas merupakan hitungan berdasarkan bunga saat ini 1,5 %</span>
                 </div>
             </div>
         </div>
+        <div className="grid md:grid-cols-1 p-4 max-w-7xl mx-auto">
+            <div className="bg-linear-to-br bg-indigo-900/90 p-4 rounded-lg shadow-md space-y-6">
+                <h2 className="font-semibold text-2xl text-white">Terima Bersih</h2>
+                <div className="text-center">
+                    <span className="text-2xl text-slate-500">Terima Bersih</span><br/>
+                    <span className="font-semibold text-3xl text-slate-200">{result ? converToRupiah(result.nettLoan):'0'}</span>
+                </div>
+            </div>
+        </div>
+        </>
     );
 }
 

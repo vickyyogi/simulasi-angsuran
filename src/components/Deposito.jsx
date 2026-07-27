@@ -1,6 +1,7 @@
 import Header from "./Header"
 import './style.comp.css'
 import {useState} from 'react'
+import { converToRupiah } from "./convertRupiah"
 
 function Deposito(){
 
@@ -13,16 +14,6 @@ function Deposito(){
     
     const convertDecimal = parseFloat(formData.interestRate) /100;
 
-    const converToRupiah = (num) =>{
-        if (isNaN(num)) return 'Rp.0';
-        return new Intl.NumberFormat('id-ID', {
-            style:'currency',
-            currency:'IDR',
-            minimumFractionDigits:0,
-            maximumFractionDigits:0
-        }).format(num);
-    }
-
     const bungaDeposito = (e) => {
         e.preventDefault();
 
@@ -31,6 +22,8 @@ function Deposito(){
 
         setResult({hasilDeposito, deposite})
     }
+
+
     return (
         <div className="grid md:grid-cols-2 gap-4 p-4">
             <div className=" bg-gradient-to-br bg-indigo-900/90 to-slate-900/50 p-4 rounded-lg shadow-md space-y-6">

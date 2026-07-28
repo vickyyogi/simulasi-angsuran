@@ -1,7 +1,7 @@
 import Header from "./Header"
 import './style.comp.css'
 import {useState} from 'react'
-import { converToRupiah } from "./convertRupiah"
+import { converToRupiah } from "../utils/convertRupiah"
 
 function Kredit(){
 
@@ -36,12 +36,14 @@ function Kredit(){
             creditFlat[tenor] = Math.ceil(((((plafond * (bunga/100)) * tenor) + plafond)/ tenor)/ 500 ) * 500;
         })
 
+
         const nettLoan = plafond - ((adm/100 * plafond) + notaris + materai + lain + pajak);
 
         setResult({
             jw,
             creditFlat,
-            nettLoan
+            nettLoan,
+            notaris
         })
     }
 
@@ -107,6 +109,7 @@ function Kredit(){
                 <h2 className="font-semibold text-2xl text-white">Terima Bersih</h2>
                 <div className="text-center">
                     <span className="text-sm text-slate-500">Estimasi Terima Bersih setelah dipotong biaya administrasi + materai</span><br/>
+                    <span className={`${formData.notarisFee === 0 ? 'hidden' : 'block'} font-semibold text-3xl text-slate-200`}>{result ? converToRupiah(result.notaris):'0'}</span><br/>
                     <span className="font-semibold text-3xl text-slate-200">{result ? converToRupiah(result.nettLoan):'0'}</span><br/>
                     <span className="text-sm text-slate-500">*NB : Estimasi diatas dapat berbeda dari realita, mohon untuk menanyakan kepastian ke Customer Service</span>
                 </div>

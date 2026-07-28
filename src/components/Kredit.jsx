@@ -106,8 +106,9 @@ function Kredit(){
             <div className="bg-linear-to-br bg-indigo-900/90 p-4 rounded-lg shadow-md space-y-6">
                 <h2 className="font-semibold text-2xl text-white">Terima Bersih</h2>
                 <div className="text-center">
-                    <span className="text-2xl text-slate-500">Terima Bersih</span><br/>
-                    <span className="font-semibold text-3xl text-slate-200">{result ? converToRupiah(result.nettLoan):'0'}</span>
+                    <span className="text-sm text-slate-500">Estimasi Terima Bersih setelah dipotong biaya administrasi + materai</span><br/>
+                    <span className="font-semibold text-3xl text-slate-200">{result ? converToRupiah(result.nettLoan):'0'}</span><br/>
+                    <span className="text-sm text-slate-500">*NB : Estimasi diatas dapat berbeda dari realita, mohon untuk menanyakan kepastian ke Customer Service</span>
                 </div>
             </div>
         </div>

@@ -91,7 +91,7 @@ function Kredit(){
                                 return (
                                     <tr key={t} className="text-center border-b border-slate-700/50">
                                         <td className="px-6 py-3 text-center">{t}</td>
-                                        <td className="px-6 py-3">{result ? converToRupiah(result.creditFlat[t]) : 0}</td>
+                                        <td className="px-6 py-3">{result ? converToRupiah(result.creditFlat[t]) : '-'}</td>
                                     </tr>
                                 )
                             })
@@ -108,6 +108,7 @@ function Kredit(){
                 <div className="text-center">
                     <span className="text-2xl text-slate-500">Terima Bersih</span><br/>
                     <span className="font-semibold text-3xl text-slate-200">{result ? converToRupiah(result.nettLoan):'0'}</span>
+                    {formData.notaris !== '0' ? <span className="text-2xl">{result.notaris}</span>:''}
                 </div>
             </div>
         </div>

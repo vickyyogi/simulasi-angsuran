@@ -43,14 +43,18 @@ function Kredit(){
             jw,
             creditFlat,
             nettLoan,
-            notaris
+            notaris,
+            materai,
+            adm,
+            pajak,
+            lain
         })
     }
 
     return (
         
         <>
-        <div className="grid md:grid-cols-2 gap-4 p-4 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-4 p-4 max-w-7xl mx-auto">
             {/** untuk form section */}
             <div className=" bg-linear-to-br bg-indigo-900/90 to-slate-900/50 border border-slate-700/50 p-4 rounded-lg shadow-md space-y-6">
                 <h2 className="text-2xl font-semibold mb-2 text-blue-50">Simulasi Kredit</h2>
@@ -103,13 +107,19 @@ function Kredit(){
                 <span className="font-light text-sm">*NB : Tabel diatas merupakan hitungan berdasarkan bunga saat ini 1,5 %</span>
                 </div>
             </div>
-        </div>
-        <div className="grid md:grid-cols-1 p-4 max-w-7xl mx-auto">
+       
+
             <div className="bg-linear-to-br bg-indigo-900/90 p-4 rounded-lg shadow-md space-y-6">
                 <h2 className="font-semibold text-2xl text-white">Terima Bersih</h2>
-                <div className="text-center">
-                    <span className="text-2xl text-slate-500">Terima Bersih</span><br/>
-                    <span className="font-semibold text-3xl text-slate-200">{result ? converToRupiah(result.nettLoan):'0'}</span>
+                <div className="block">
+                    <p className="text-white text-sm">Jumlah Pinjaman : {converToRupiah(formData.loanAmount)}</p>
+                    <p className="text-white text-sm">Biaya Administrasi : {converToRupiah((formData.admFee/100) * formData.loanAmount)}</p>
+                    <p className="text-white text-sm">Biaya Notaris : {converToRupiah(formData.notarisFee)}</p>
+                    <p className="text-white text-sm">Biaya Materai : {converToRupiah(formData.materaiFee)}</p>
+                    <p className="text-white text-sm">Biaya Pajak/STNK : {converToRupiah(formData.pajakStnkFee)}</p>
+                    <p className="text-white text-sm">Biaya Lainnya : {converToRupiah(formData.lainnyaFee)}</p>
+                    <hr className="my-2 border-slate-700/50"/>
+                    <h3 className="font-semibold text-lg text-white">Terima Bersih : {result ? converToRupiah(result.nettLoan) : '-'}</h3>
                 </div>
             </div>
         </div>

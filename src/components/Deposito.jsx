@@ -1,7 +1,7 @@
 import Header from "./Header"
 import './style.comp.css'
 import {useState} from 'react'
-import { converToRupiah } from "./convertRupiah"
+import { converToRupiah } from "../utils/convertRupiah"
 
 function Deposito(){
 

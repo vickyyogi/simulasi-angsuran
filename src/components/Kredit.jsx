@@ -1,7 +1,7 @@
 import Header from "./Header"
 import './style.comp.css'
 import {useState} from 'react'
-import { converToRupiah } from "./convertRupiah"
+import { converToRupiah } from "../utils/convertRupiah"
 
 function Kredit(){
 
@@ -36,12 +36,14 @@ function Kredit(){
             creditFlat[tenor] = Math.ceil(((((plafond * (bunga/100)) * tenor) + plafond)/ tenor)/ 500 ) * 500;
         })
 
+
         const nettLoan = plafond - ((adm/100 * plafond) + notaris + materai + lain + pajak);
 
         setResult({
             jw,
             creditFlat,
-            nettLoan
+            nettLoan,
+            notaris
         })
     }
 
@@ -108,7 +110,6 @@ function Kredit(){
                 <div className="text-center">
                     <span className="text-2xl text-slate-500">Terima Bersih</span><br/>
                     <span className="font-semibold text-3xl text-slate-200">{result ? converToRupiah(result.nettLoan):'0'}</span>
-                    {formData.notaris !== '0' ? <span className="text-2xl">{result.notaris}</span>:''}
                 </div>
             </div>
         </div>

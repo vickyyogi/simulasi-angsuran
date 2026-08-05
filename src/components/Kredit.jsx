@@ -43,14 +43,18 @@ function Kredit(){
             jw,
             creditFlat,
             nettLoan,
-            notaris,adm,materai,lain,pajak
+            notaris,
+            materai,
+            adm,
+            pajak,
+            lain
         })
     }
 
     return (
         
         <>
-        <div className="grid md:grid-cols-2 gap-4 p-4 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-4 p-4 max-w-7xl mx-auto">
             {/** untuk form section */}
             <div className=" bg-linear-to-br bg-indigo-900/90 to-slate-900/50 border border-slate-700/50 p-4 rounded-lg shadow-md space-y-6">
                 <h2 className="text-2xl font-semibold mb-2 text-blue-50">Simulasi Kredit</h2>
@@ -93,7 +97,7 @@ function Kredit(){
                                 return (
                                     <tr key={t} className="text-center border-b border-slate-700/50">
                                         <td className="px-6 py-3 text-center">{t}</td>
-                                        <td className="px-6 py-3">{result ? converToRupiah(result.creditFlat[t]) : 0}</td>
+                                        <td className="px-6 py-3">{result ? converToRupiah(result.creditFlat[t]) : '-'}</td>
                                     </tr>
                                 )
                             })
@@ -103,15 +107,15 @@ function Kredit(){
                 <span className="font-light text-sm">*NB : Tabel diatas merupakan hitungan berdasarkan bunga saat ini 1,5 %</span>
                 </div>
             </div>
-        </div>
-        <div className="grid md:grid-cols-1 p-4 max-w-7xl mx-auto">
+       
+
             <div className="bg-linear-to-br bg-indigo-900/90 p-4 rounded-lg shadow-md space-y-6">
                 <h2 className="font-semibold text-2xl text-white">Terima Bersih</h2>
-                <div className="block p-1">
-                    <div className="flex">
-                        <span>Adm :</span>
-                        <span>{result ? converToRupiah(result.adm):'0'}</span>
-                    </div>
+                <div className="text-center">
+                    <span className="text-sm text-slate-500">Estimasi Terima Bersih setelah dipotong biaya administrasi + materai</span><br/>
+                    <span className={`${formData.notarisFee === 0 ? 'hidden' : 'block'} font-semibold text-3xl text-slate-200`}>{result ? converToRupiah(result.notaris):'0'}</span><br/>
+                    <span className="font-semibold text-3xl text-slate-200">{result ? converToRupiah(result.nettLoan):'0'}</span><br/>
+                    <span className="text-sm text-slate-500">*NB : Estimasi diatas dapat berbeda dari realita, mohon untuk menanyakan kepastian ke Customer Service</span>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('kredit');
 
   return (
-    <div className="bg-slate-900 min-h-screen">
+    <div className="bg-slate-50 min-h-screen">
       <Header />
       <Routes>
         <Route path='/' element={<Kredit/>}/>

@@ -14,6 +14,15 @@ function Deposito(){
     
     const convertDecimal = parseFloat(formData.interestRate) /100;
 
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        const clearedValue = value.replace(/\D/g, ''); // Remove non-numeric characters
+        
+        const formattedValue = clearedValue;
+        setFormData({...formData, [name]: formattedValue});
+        console.log(formData)
+    }
+
     const bungaDeposito = (e) => {
         e.preventDefault();
 
@@ -30,14 +39,14 @@ function Deposito(){
                 <h2 className="text-2xl font-semibold mb-2 text-slate-950">Simulasi Deposito</h2>
                 <form className="space-y-4 text-slate-950">
                     <div>
-                        <label htmlFor="depositeAmount" className="block text-sm font-medium ">Jumlah Deposito (Rp)</label>
-                        <input type="number" name="depositeAmount" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-3 pl-2" onChange={(e) => setFormData({...formData, depositAmount: e.target.value})} value={setFormData.depositAmount} placeholder="Rp. 100000000"/>
+                        <label htmlFor="depositAmount" className="block text-sm font-medium ">Jumlah Deposito (Rp)</label>
+                        <input type="text" name="depositAmount" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-3 pl-2" onChange={handleInputChange} value={converToRupiah(formData.depositAmount)} placeholder="Rp. 100000000"/>
                     </div>
                     <div>
                         <label htmlFor="interestRate" className="block text-sm font-medium ">Suku Bunga (%)</label>
-                        <input type="number" id="interestRate" name="interestRate" step="0.01" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-3 pl-2" onChange={(e) => setFormData({...formData, interestRate: e.target.value})} value={setFormData.interestRate} placeholder="5"/>
+                        <input type="text" id="interestRate" name="interestRate" step="0.01" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm py-3 pl-2" onChange={(e)=> setFormData({...formData, interestRate: e.target.value})} value={formData.interestRate} placeholder="5"/>
                     </div>
-                    <button type="submit" className="w-full bg-white text-indigo-950 py-2 px-4 rounded-md hover:bg-indigo-600 hover:text-white transition-colors cursor-pointer" onClick={bungaDeposito}>Hitung</button>
+                    <button type="submit" className="w-full mt-2 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-xl shadow-md shadow-blue-500/20 transition-all cursor-pointer" onClick={bungaDeposito}>Hitung</button>
                 </form>
             </div>
             <div className="bg-white p-4 rounded-lg shadow-md text-center border border-slate-200/80 text-slate-950">

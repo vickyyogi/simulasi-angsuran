@@ -8,10 +8,10 @@ function Kredit(){
     const [result, setResult] = useState('');
 
     const [formData, setFormData] = useState({
-        loanAmount:'',
+        loanAmount:'0',
         interestRate:'1.5',
         admFee: '2',
-        notarisFee:'',
+        notarisFee:'0',
         materaiFee:'0',
         lainnyaFee:'0',
         pajakStnkFee:'0'
@@ -99,7 +99,7 @@ function Kredit(){
             <div className="lg:col-span-3 space-y-6">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
                 <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-semibold mb-2">Daftar Angsuran</h2>
+                <h2 className="text-2xl text-slate-950 font-semibold mb-2">Daftar Angsuran</h2>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">

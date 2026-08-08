@@ -99,7 +99,7 @@ function Kredit(){
             <div className="lg:col-span-3 space-y-6">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
                 <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl text-slate-950 font-semibold mb-2">Daftar Angsuran</h2>
+                <h2 className="text-xl text-slate-950 font-medium mb-2">Daftar Angsuran</h2>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">
@@ -114,7 +114,7 @@ function Kredit(){
                             jw.map((t)=>{
                                 return (
                                     <tr key={t} className="hover:bg-slate-50/80 transition-colors">
-                                        <td className="py-2.5 font-medium text-slate-700">{t}</td>
+                                        <td className="py-2.5 font-medium text-slate-700 text-center">{t} Bln</td>
                                         <td className="py-2.5 text-right font-bold text-slate-900">{result ? converToRupiah(result.creditFlat[t]) : '-'}</td>
                                     </tr>
                                 )
@@ -129,7 +129,7 @@ function Kredit(){
        
             <div className="lg:col-span-4 space-y-6">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
-                <h2 className="font-semibold text-2xl text-slate-950 py-2.5">Terima Bersih</h2>
+                <h2 className="font-semibold text-xl text-slate-950 ">Terima Bersih</h2>
                 <ul className="block space-y-2">
                         <li>{formData.admFee === '0' ? '' : <span className="text-sm font-medium ">Biaya Administrasi : {converToRupiah(result.adm/100 * formData.loanAmount)}</span>}</li>
                         <li>{formData.notarisFee === '0' ? '' : <span className="text-sm font-medium ">Biaya Notaris : {converToRupiah(result.notaris)}</span>}</li>
